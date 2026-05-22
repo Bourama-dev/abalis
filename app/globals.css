@@ -1,0 +1,190 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-playfair: 'Playfair Display', Georgia, serif;
+  --font-inter: 'Inter', system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-inter);
+  color: #1A2E35;
+  background-color: #FFFFFF;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F7F5F0;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #C8A951;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #A88B38;
+}
+
+/* Selection */
+::selection {
+  background-color: rgba(200, 169, 81, 0.25);
+  color: #0B1F3A;
+}
+
+/* Focus visible */
+:focus-visible {
+  outline: 2px solid #C8A951;
+  outline-offset: 2px;
+}
+
+/* Typography */
+.heading-display {
+  font-family: var(--font-playfair);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.heading-section {
+  font-family: var(--font-playfair);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+/* Gold underline accent */
+.gold-underline {
+  position: relative;
+  display: inline-block;
+}
+
+.gold-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, #C8A951, #D4BC76);
+}
+
+/* Section divider */
+.section-divider {
+  width: 48px;
+  height: 3px;
+  background: linear-gradient(90deg, #C8A951, #D4BC76);
+  border-radius: 2px;
+}
+
+/* Button styles */
+.btn-primary {
+  @apply inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-gold text-navy font-semibold text-sm tracking-wide rounded transition-all duration-200 hover:bg-gold-dark hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0;
+}
+
+.btn-secondary {
+  @apply inline-flex items-center justify-center gap-2 px-7 py-3.5 border-2 border-white text-white font-semibold text-sm tracking-wide rounded transition-all duration-200 hover:bg-white hover:text-navy active:translate-y-0;
+}
+
+.btn-outline-gold {
+  @apply inline-flex items-center justify-center gap-2 px-7 py-3.5 border-2 border-gold text-gold font-semibold text-sm tracking-wide rounded transition-all duration-200 hover:bg-gold hover:text-navy hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0;
+}
+
+/* Card hover effect */
+.card-hover {
+  @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+}
+
+/* Gradient text */
+.text-gradient-gold {
+  background: linear-gradient(135deg, #C8A951 0%, #D4BC76 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Subtle pattern background */
+.pattern-bg {
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(11,31,58,0.04) 1px, transparent 0);
+  background-size: 32px 32px;
+}
+
+/* Navy gradient overlay for hero */
+.hero-overlay {
+  background: linear-gradient(
+    135deg,
+    rgba(11, 31, 58, 0.97) 0%,
+    rgba(11, 31, 58, 0.92) 50%,
+    rgba(18, 40, 72, 0.88) 100%
+  );
+}
+
+/* Animated underline for nav links */
+.nav-link {
+  @apply relative text-sm font-medium transition-colors duration-200;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: #C8A951;
+  transition: width 0.25s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* Loading animation for stat counters */
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Process step connector */
+.step-connector {
+  position: absolute;
+  top: 24px;
+  left: calc(50% + 24px);
+  right: calc(-50% + 24px);
+  height: 1px;
+  background: linear-gradient(90deg, #C8A951, rgba(200,169,81,0.3));
+}
+
+/* Form input styles */
+.form-input {
+  @apply w-full px-4 py-3 bg-white border border-gray-200 rounded text-dark-text text-sm placeholder-mid-gray transition-colors duration-200 focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/10;
+}
+
+.form-label {
+  @apply block text-sm font-medium text-dark-text mb-1.5;
+}
+
+/* Testimonial card quote mark */
+.testimonial-quote::before {
+  content: '\201C';
+  font-family: var(--font-playfair);
+  font-size: 5rem;
+  line-height: 0;
+  color: rgba(200, 169, 81, 0.2);
+  position: absolute;
+  top: 28px;
+  left: 20px;
+}
