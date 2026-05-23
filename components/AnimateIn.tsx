@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, ElementType, ReactNode } from "react";
+import { useEffect, useRef, ElementType, ReactNode, ComponentPropsWithRef } from "react";
 
 type Variant = "fade-up" | "fade-in" | "fade-left" | "fade-right" | "scale-up";
 
@@ -30,7 +30,7 @@ export default function AnimateIn({
   as: Tag = "div",
   threshold = 0.1,
 }: AnimateInProps) {
-  const ref = useRef<HTMLElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const el = ref.current;
@@ -50,8 +50,6 @@ export default function AnimateIn({
     return () => observer.disconnect();
   }, [threshold]);
 
-  // Build variant class — "fade-up" maps to the base .animate-on-scroll (default translateY)
-  // other variants add a modifier class
   const variantClass =
     variant === "fade-up"
       ? "animate-on-scroll"
@@ -65,10 +63,7 @@ export default function AnimateIn({
     .filter(Boolean)
     .join(" ");
 
-  return (
-    // @ts-expect-error — dynamic tag is valid but TS doesn't narrow ref correctly
-    <Tag ref={ref} className={classes}>
-      {children}
-    </Tag>
-  );
+  const props = { ref, className: classes } as ComponentPropsWithRef<typeof Tag>;
+
+  return <Tag {...props}>{children}</Tag>;
 }
