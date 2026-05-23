@@ -1,3 +1,5 @@
+"use client";
+
 interface TestimonialCardProps {
   quote: string;
   name: string;

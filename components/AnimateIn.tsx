@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, ElementType, ReactNode, ComponentPropsWithRef } from "react";
+import { useEffect, useRef, ReactNode } from "react";
 
 type Variant = "fade-up" | "fade-in" | "fade-left" | "fade-right" | "scale-up";
 
@@ -9,7 +9,6 @@ interface AnimateInProps {
   variant?: Variant;
   delay?: 0 | 100 | 200 | 300 | 400 | 500;
   className?: string;
-  as?: ElementType;
   threshold?: number;
 }
 
@@ -27,7 +26,6 @@ export default function AnimateIn({
   variant = "fade-up",
   delay = 0,
   className = "",
-  as: Tag = "div",
   threshold = 0.1,
 }: AnimateInProps) {
   const ref = useRef<HTMLDivElement>(null);
@@ -55,15 +53,14 @@ export default function AnimateIn({
       ? "animate-on-scroll"
       : `animate-on-scroll ${variant}`;
 
-  const classes = [
-    variantClass,
-    delay ? delayClass[delay] : "",
-    className,
-  ]
+  const classes = [variantClass, delay ? delayClass[delay] : "", className]
     .filter(Boolean)
     .join(" ");
 
-  const props = { ref, className: classes } as ComponentPropsWithRef<typeof Tag>;
-
-  return <Tag {...props}>{children}</Tag>;
+  return (
+    <div ref={ref} className={classes}>
+      {children}
+    </div>
+  );
 }
+
