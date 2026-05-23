@@ -3,6 +3,7 @@ import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import PageTransition from "@/components/PageTransition";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -90,7 +91,9 @@ export default function RootLayout({
       </head>
       <body className="font-sans antialiased">
         <Header />
-        <main>{children}</main>
+        <main>
+          <PageTransition>{children}</PageTransition>
+        </main>
         <Footer />
       </body>
     </html>
